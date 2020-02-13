@@ -4,22 +4,9 @@ $(document).ready(function(){
   getAll();
   $('#add-button').click(function() {
     var newElement = $('#add-input').val();
-    $.ajax({
-      url: 'http://157.230.17.132:3034/todos',
-      method:'POST',
-      data: {
-        text: newElement,
-      },
-      success: function(data){
-          console.log(newElement);
-          $('.list').html('');
-          getAll();
-      },
-      error:function(error) {
-        alert('error!');
-      }
-    })
-  })
+    createElement(newElement);
+
+  });
 });
 
 //funzione che chiama elementi in lista e stampa su schermo
@@ -48,4 +35,26 @@ function  getAll() {
       alert('error!');
     }
   })
+}
+
+//funzione che crea nuovi elementi tramite input al premere del bottone
+
+function createElement() {
+  var newElement = $('#add-input').val();
+  $.ajax({
+    url: 'http://157.230.17.132:3034/todos',
+    method:'POST',
+    data: {
+      text: newElement,
+    },
+    success: function(data){
+        console.log(newElement);
+        $('.list').html('');
+        getAll();
+    },
+    error:function(error) {
+      alert('error!');
+    }
+  })
+
 }
