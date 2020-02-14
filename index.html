@@ -16,13 +16,18 @@
     <input id="add-input" type="text" name="searchbar" value="" placeholder="insert another element in this list">
     <button id="add-button" type="button" name="button">add</button>
 
+
   <ol class="list">
 
   </ol>
 
   <script id="entry-template" type="text/x-handlebars-template">
-
-    <li class='element'>{{text}}</li>
+    <li class="element" attr-id="{{id}}">
+     <input type="text" value="{{text}}">
+     <div class="deletebox"
+      <div id="deleteX">x</div>
+    </div>
+    </li>
 
   </script>
 

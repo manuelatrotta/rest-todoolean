@@ -2,10 +2,15 @@
 
 $(document).ready(function(){
   getAll();
+
   $('#add-button').click(function() {
     var newElement = $('#add-input').val();
     createElement(newElement);
-
+  });
+  $(document).on('click', '.deletebox',function(){
+    var deleteButton = $(this);
+    var idElement = deleteButton.parent().attr('data-id');
+    deleteElement(idElement);
   });
 });
 
@@ -56,5 +61,22 @@ function createElement() {
       alert('error!');
     }
   })
+}
 
+//funzione che elimina elementi dalla lista
+function deleteElement (id) {
+  $.ajax({
+    url: 'http://157.230.17.132:3034/todos/' + id,
+    method:'DELETE',
+    data: {
+     id: id,
+    },
+    success: function(data){
+        $('.list').html('');
+        getAll();
+    },
+    error:function(error) {
+      alert('error!');
+    }
+  })
 }
